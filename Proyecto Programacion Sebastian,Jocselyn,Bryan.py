@@ -7,7 +7,7 @@ print("Bienvenido a la cadena de restaurantes Sabores Deliciosos")
 yes=True
 No=False
 login=input("¿Desea ingresar al menu?\n Marque Si para ingresar al menu o No para salir del menu")
-while login==si:
+while login=="si":
     print("Este es su menu")
     print("1.Registrar nueva sede")
     print("2.Modulo de registro de clientes")
@@ -30,4 +30,4 @@ while login==si:
     elif option == 6:
         print("Usted selecciono la opcion\n 6.Modulo de facturacion")
     else:
-        print("Ud ha salido del menu")
+        print("Usted ha salido del menu")
