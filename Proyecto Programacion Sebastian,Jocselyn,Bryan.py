@@ -2,3 +2,5 @@
 """ Primer avance; Generar el primer módulo completo y funcional.
 • Generar el segundo módulo completo y funcional.
 • Generar el tercer módulo completo y funcional"""
+
+print("Bienvenido ala cadena de restaurantes Sabores Deliciosos")
