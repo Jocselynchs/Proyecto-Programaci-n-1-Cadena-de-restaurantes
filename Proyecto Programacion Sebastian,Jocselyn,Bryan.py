@@ -15,3 +15,4 @@ while login==Si:
     print("Modulo de resgistro de alimentos y bebidas")
     print("Modulo de facturacion")
     print("Salir.")
+   opcion=int(input("Seleccione una opcion: ")
