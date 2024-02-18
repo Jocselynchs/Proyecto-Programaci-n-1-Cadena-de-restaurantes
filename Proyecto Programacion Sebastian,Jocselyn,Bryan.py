@@ -7,5 +7,11 @@ print("Bienvenido a la cadena de restaurantes Sabores Deliciosos")
 
 menu1=input("¿Desea ingresar al menu?\n Marque Si para ingresar al menu o No para salir del menu")
 while menu1==Si:
-    print("Este es su menu")
-    print
+   print("Este es su menu")
+    print("Registrar nueva sede")
+    print("Modulo de registro de clientes")
+    print("Modulo e reservaciones del restaurante")
+    print("Modulo de toma de ordenes y pedidos")
+    print("Modulo de resgistro de alimentos y bebidas")
+    print("Modulo de facturacion")
+    print("Salir.")
