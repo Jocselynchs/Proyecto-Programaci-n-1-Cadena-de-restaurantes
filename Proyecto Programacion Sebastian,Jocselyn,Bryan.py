@@ -6,6 +6,7 @@
 print("Bienvenido a la cadena de restaurantes Sabores Deliciosos")
 yes=True
 no=False
+counter=0
 login=input("¿Desea ingresar al menu?\n Marque Si para ingresar al menu o No para salir del menu ")
 for i in range(login=="si"):
     print("Este es su menu")
