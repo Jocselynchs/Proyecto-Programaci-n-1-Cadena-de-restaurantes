@@ -30,6 +30,8 @@ for i in range(login=="si"):
         print("Usted selecciono la opcion\n5.Modulo de resgistro de alimentos y bebidas")
     elif option == 6:
         print("Usted selecciono la opcion\n6.Modulo de facturacion")
+    elif option == 7:
+        print("Usted selecciono la opcion\n7.Salir")
     elif login=="no":
         print("Usted salio del menu")
     else:
