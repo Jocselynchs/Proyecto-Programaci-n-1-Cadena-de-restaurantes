@@ -1,12 +1,9 @@
 """Cadena de restaurantes Sabores Deliciosos"""
-""" Primer avance; Generar el primer módulo completo y funcional.
-• Generar el segundo módulo completo y funcional.
-• Generar el tercer módulo completo y funcional"""
+""" Primer avance; primer módulo completo y funcional.
+• segundo módulo completo y funcional.
+• tercer módulo completo y funcional"""
 
 print("Bienvenido a la cadena de restaurantes Sabores Deliciosos")
-yes=True
-no=False
-counter=0
 login=input("¿Desea ingresar al menu?\n Marque Si para ingresar al menu o No para salir del menu: ")
 for i in range(login=="si"):
     print("Este es su menu")
@@ -20,6 +17,30 @@ for i in range(login=="si"):
     option=int(input("Seleccione una opcion: "))
     if option==1:
         print("Usted selecciono la opcion:\n1.Registrar nueva sede")
+        application_campus = input("Ingrese el nombre de la sede: ")
+        print("***La capacidad total de la sede ", application_campus,
+              " es de 15 mesas,\n para una capacidad de 4 personas como máximo por mesa, para un total de 60 personas en el restaurante***")
+        number_clients=int(input("Ingrese la cantidad de comensales para ordenar: "))
+        if number_clients>0:
+            number_tables=15
+            maximum_capacity=4
+            tables_needed=(number_clients + maximum_capacity - 1) // maximum_capacity
+            available_tables=number_tables-tables_needed
+            print("La cantidad de mesas para reservar es de: ", number_tables,
+                  "\n""la cantidad de mesas disponible es de ", available_tables)
+        print("Días para reservar")
+        print(" **Lunes** \n **Martes**\n **Miércoles**\n **Jueves**\n **Viernes**\n **Sábado**\n **Domingo**")
+        booking_day = input("Ingrese el día de la semana que desee hacer su reserva: ")
+        day = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+        print("El día de su reserva es ", booking_day)
+        available_day = False
+        for i in day:
+            if booking_day == i:
+                available_day = True
+        if available_day:
+            print("El día está disponible")
+        else:
+            print("El día No está disponible")
     elif option == 2:
         print("Usted selecciono la opcion:\n2.Modulo de registro de clientes\n")
         while True:
