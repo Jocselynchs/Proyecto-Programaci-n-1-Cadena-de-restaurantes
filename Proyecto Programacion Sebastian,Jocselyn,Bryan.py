@@ -29,16 +29,15 @@ for i in range(login=="si"):
             canton = str(input('Ingrese su canton: '))
             district = str(input('Ingrese su distrito: '))
             address = str(input('Ingrese su direccion: '))
+            
 
-            if name.isdigit or country.isdigit or province.isdigit or canton.isdigit or district.isdigit or address.isdigit:
-                print('¡Error! Verifique que los datos sean correctos\n')
-                continue
-        
             try:
                 age = int(input('Ingrese su edad: '))
                 ID = int(input('Ingrese su numero de identificacion: '))
-
-                if not name or not country or not province or not canton or not district \
+                if age < 0 or ID < 0:
+                    print('¡Respuesta invalida! Verifique que la edad o el numero de identificacion sean correctos.\n')
+                    continue
+                elif not name or not country or not province or not canton or not district \
                     or not address or not age or not ID:
                     print('¡Error! Debe rellenar todo lo solicitado\n')
                     continue
