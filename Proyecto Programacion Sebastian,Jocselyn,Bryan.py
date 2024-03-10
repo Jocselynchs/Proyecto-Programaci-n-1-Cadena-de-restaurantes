@@ -1,9 +1,3 @@
-"""Cadena de restaurantes Sabores Deliciosos"""
-""" Primer avance; primer módulo completo y funcional.
-• segundo módulo completo y funcional.
-• tercer módulo completo y funcional"""
-
-print("Bienvenido a la cadena de restaurantes Sabores Deliciosos")
 login=input("¿Desea ingresar al menu?\n Marque Si para ingresar al menu o No para salir del menu: ")
 for i in range(login=="si"):
     print("Este es su menu")
@@ -17,9 +11,11 @@ for i in range(login=="si"):
     option=int(input("Seleccione una opcion: "))
     if option==1:
         print("Usted selecciono la opcion:\n1.Registrar nueva sede")
+        
         application_campus = input("Ingrese el nombre de la sede: ")
-        print("***La capacidad total de la sede ", application_campus,
-              " es de 15 mesas,\n para una capacidad de 4 personas como máximo por mesa, para un total de 60 personas en el restaurante***")
+        print("***La capacidad total de la sede", application_campus,
+              "es de 15 mesas,\n para una capacidad de 4 personas como máximo por mesa, para un total de 60 personas en el restaurante***")
+        
         number_clients=int(input("Ingrese la cantidad de comensales para ordenar: "))
         if number_clients>0:
             number_tables=15
@@ -28,7 +24,8 @@ for i in range(login=="si"):
             available_tables=number_tables-tables_needed
             print("La cantidad de mesas para reservar es de: ", number_tables,
                   "\n""la cantidad de mesas disponible es de ", available_tables)
-        print("Días para reservar")
+        
+        print("Días para reservar:")
         print(" **Lunes** \n **Martes**\n **Miércoles**\n **Jueves**\n **Viernes**\n **Sábado**\n **Domingo**")
         booking_day = input("Ingrese el día de la semana que desee hacer su reserva: ")
         day = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
@@ -41,6 +38,7 @@ for i in range(login=="si"):
             print("El día está disponible")
         else:
             print("El día No está disponible")
+
     elif option == 2:
         print("Usted selecciono la opcion:\n2.Modulo de registro de clientes\n")
         while True:
@@ -67,6 +65,7 @@ for i in range(login=="si"):
                 for wayToPay in ['• Efectivo', '• Transferencia', '• Tarjeta de credito']:
                     print(wayToPay)
                 choice = str(input('\nElija su forma de pago: '))
+                print('Usted ha elegido: ', choice)
                 if choice not in ['efectivo', 'transferencia', 'tarjeta de credito']:
                     print('¡Error, eleccion de forma de pago no valida!\n')
                     continue
@@ -78,7 +77,14 @@ for i in range(login=="si"):
                 continue
 
     elif option == 3:
-        print("Usted selecciono la opción:\n3.Modulo e reservaciones del restaurante")
+        print("Usted selecciono la opción:\n3.Modulo de reservaciones del restaurante")
+        while True:
+            ID_V = str(input('Identificacion del cliente: '))
+            days = int(input('Dias deseados para la reserva: '))
+            amountTables = int(input('Ingrese la cantidad de mesas para reserva: '))
+            amountPeople = int(input('Ingrese la cantidad de personas para reserva: '))
+            
+            campus = str(input('Seleccione la sede para la reserva: '))
     elif option == 4:
         print("Usted selecciono la opcion:\n4.Modulo de toma de ordenes y pedidos")
     elif option == 5:
@@ -91,4 +97,5 @@ for i in range(login=="si"):
         print("Usted salio del menu")
     else:
         print("Ingrese una opcion valida")
+
 
