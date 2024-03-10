@@ -1,3 +1,9 @@
+"""Cadena de restaurantes Sabores Deliciosos"""
+""" Primer avance; primer módulo completo y funcional.
+• segundo módulo completo y funcional.
+• tercer módulo completo y funcional"""
+
+print("Bienvenido a la cadena de restaurantes Sabores Deliciosos")
 login=input("¿Desea ingresar al menu?\n Marque Si para ingresar al menu o No para salir del menu: ")
 for i in range(login=="si"):
     print("Este es su menu")
