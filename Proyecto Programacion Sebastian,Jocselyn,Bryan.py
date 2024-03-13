@@ -7,19 +7,19 @@ print("Bienvenido a la cadena de restaurantes Sabores Deliciosos")
 login = input("¿Desea ingresar al menu?\n Marque Si para ingresar al menu o No para salir del menu: ")
 
 def principal_menu():
-    print("Este es su menu:")
+    print("\nEste es su menu:")
     print("1.Registrar nueva sede")
-    print("2.Modulo de registro de clientes")
-    print("3.Modulo de reservaciones del restaurante")
-    print("4.Modulo de toma de ordenes y pedidos")
-    print("5.Modulo de resgistro de alimentos y bebidas")
-    print("6.Modulo de facturacion")
+    print("2.Registro de clientes")
+    print("3.Reservaciones del restaurante")
+    print("4.Toma de ordenes y pedidos")
+    print("5.Resgistro de alimentos y bebidas")
+    print("6.Facturacion")
     print("7.Salir.")
 
 
 def option1():
-    print("Usted selecciono la opcion:\n1.Registrar nueva sede")
-    application_campus = input("\nIngrese el nombre de la sede: ")
+    print("\nUsted selecciono la opcion:\n1.Registrar nueva sede")
+    application_campus = input("Ingrese el nombre de la sede: ")
     print("***La capacidad total de la sede", application_campus,
           "es de 15 mesas,\n para una capacidad de 4 personas como máximo por mesa, para un total de 60 personas en el restaurante***")
     
@@ -46,8 +46,19 @@ def option1():
     else:
         print("El día No está disponible")
 
+
+
 def option2():
-    print("Usted selecciono la opcion:\n2.Modulo de registro de clientes\n")
+    global name
+    global country
+    global province
+    global canton
+    global district
+    global address
+    global age
+    global ID
+
+    print("\nUsted selecciono la opcion:\n2.Registro de clientes")
     while True:
             name = str(input('Ingrese su nombre: '))
             country = str(input('Ingrese su pais: '))
@@ -55,7 +66,7 @@ def option2():
             canton = str(input('Ingrese su canton: '))
             district = str(input('Ingrese su distrito: '))
             address = str(input('Ingrese su direccion: '))
-            
+
 
             try:
                 age = int(input('Ingrese su edad: '))
@@ -72,8 +83,8 @@ def option2():
                 for wayToPay in ['• Efectivo', '• Transferencia', '• Tarjeta de credito']:
                     print(wayToPay)
                 choice = str(input('\nElija su forma de pago: '))
-                print('Usted ha elegido: ', choice)
-                if choice not in ['efectivo', 'transferencia', 'tarjeta de credito']:
+                print('Usted ha elegido: ', choice.lower())
+                if choice.lower() not in ['efectivo', 'transferencia', 'tarjeta de credito']:
                     print('¡Error, eleccion de forma de pago no valida!\n')
                     continue
 
@@ -82,28 +93,46 @@ def option2():
             except ValueError:
                 print('¡Verifique que no haya ingresado incorrectamente los datos!\n')
                 continue
+        
 
-def option3():
-    print("Usted selecciono la opción:\n3.Modulo de reservaciones del restaurante")
+def option3(name, country, province, canton, district, address, age, ID):
+    print("\nUsted selecciono la opción:\n3.Reservaciones del restaurante")
     while True:
-            ID_V = str(input('Identificacion del cliente: '))
-            days = int(input('Dias deseados para la reserva: '))
-            amountTables = int(input('Ingrese la cantidad de mesas para reserva: '))
-            amountPeople = int(input('Ingrese la cantidad de personas para reserva: '))
+            print('\n• Identificacion del cliente:')
+            name_Verication = str(input('Ingrese el nombre: '))
+            country_Verication = str(input('Ingrese el pais: '))
+            province_Verication = str(input('Ingrese la provincia: '))
+            canton_Verication = str(input('Ingrese el canton: '))
+            district_Verication = str(input('Ingrese el distrito: '))
+            address_Verication = str(input('Ingrese la direccion: '))
+            age_Verication = int(input('Ingrese la edad: '))
+            ID_Verication = int(input('Ingrese el numero de identificacion: '))
             
-            campus = str(input('Seleccione la sede para la reserva: ')) #Verificar despues
+            #Verificacion de cliente existente
+            if name_Verication == name and country_Verication == country and province_Verication == province\
+                and canton_Verication == canton and district_Verication == district and address_Verication == address\
+                and age_Verication == age and ID_Verication == ID:
+                print('El cliente si existe.')
+            else: 
+                print('El cliente no existe aun.')
+            break
 
+    print('• Datos para reserva:')    
+    days = int(input('Dias deseados para la reserva: '))
+    campus = str(input('Seleccione la sede para la reserva: ')) #Verificar despues
             
-
+            #amountTables = int(input('Ingrese la cantidad de mesas para reserva: '))
+            #amountPeople = int(input('Ingrese la cantidad de personas para reserva: '))
+            
+                
 def option4():
-    print("Usted selecciono la opcion:\n4.Modulo de toma de ordenes y pedidos")
+    print("\nUsted selecciono la opcion:\n4.Toma de ordenes y pedidos")
 
 def option5():
-    print("Usted selecciono la opcion:\n5.Modulo de resgistro de alimentos y bebidas")
+    print("\nUsted selecciono la opcion:\n5.Resgistro de alimentos y bebidas")
 
 def option6():
-    print("Usted selecciono la opcion:\n6.Modulo de facturacion")
-
+    print("\nUsted selecciono la opcion:\n6.Facturacion")
 
 while login.lower() == "si":
     principal_menu()
@@ -114,7 +143,10 @@ while login.lower() == "si":
     elif option == 2:
         option2()
     elif option == 3:
-        option3()
+        try: 
+            option3(name, country, province, canton, district, address, age, ID)
+        except NameError:
+            print('¡No se ha registrado ningun cliente aun!')    
     elif option == 4:
         option4()
     elif option == 5:
@@ -122,7 +154,7 @@ while login.lower() == "si":
     elif option == 6:
         option6()
     elif option == 7:
-        print("Usted selecciono la opcion:\n7.Salir")
+        print("\nUsted selecciono la opcion:\n7.Salir")
         break
     else:
         print("Ingrese una opcion valida\n")
