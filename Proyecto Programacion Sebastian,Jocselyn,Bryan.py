@@ -18,7 +18,13 @@ def principal_menu():
 
 
 def option1():
+    global application_campus
+    
     print("\nUsted selecciono la opcion:\n1.Registrar nueva sede")
+    print('Sedes:')
+    choseCampus = ['• San Rafael', '• Santo Domingo', '• Heredia', '• San Jose', '• Escazu']
+    for x in choseCampus:
+        print(x)
     application_campus = input("Ingrese el nombre de la sede: ")
     print("***La capacidad total de la sede", application_campus,
           "es de 15 mesas,\n para una capacidad de 4 personas como máximo por mesa, para un total de 60 personas en el restaurante***")
@@ -35,11 +41,11 @@ def option1():
     print("Días para reservar:")
     print(" **Lunes** \n **Martes**\n **Miércoles**\n **Jueves**\n **Viernes**\n **Sábado**\n **Domingo**")
     booking_day = input("Ingrese el día de la semana que desee hacer su reserva: ")
-    day = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
-    print("El día de su reserva es ", booking_day)
+    day = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"]
+    print("El día de su reserva es", booking_day)
     available_day = False
     for i in day:
-        if booking_day == i:
+        if booking_day.lower() == i:
             available_day = True
     if available_day:
         print("El día está disponible")
@@ -98,7 +104,7 @@ def option2():
 def option3(name, country, province, canton, district, address, age, ID):
     print("\nUsted selecciono la opción:\n3.Reservaciones del restaurante")
     while True:
-            print('\n• Identificacion del cliente:')
+            print('• Identificacion del cliente:')
             name_Verication = str(input('Ingrese el nombre: '))
             country_Verication = str(input('Ingrese el pais: '))
             province_Verication = str(input('Ingrese la provincia: '))
@@ -119,12 +125,23 @@ def option3(name, country, province, canton, district, address, age, ID):
 
     print('• Datos para reserva:')    
     days = int(input('Dias deseados para la reserva: '))
-    campus = str(input('Seleccione la sede para la reserva: ')) #Verificar despues
-            
-            #amountTables = int(input('Ingrese la cantidad de mesas para reserva: '))
-            #amountPeople = int(input('Ingrese la cantidad de personas para reserva: '))
-            
-                
+    
+    campus = str(input('Seleccione la sede para la reserva: '))
+    
+    
+    amountTables = int(input('Ingrese la cantidad de mesas para reserva: '))
+    amountPeople = int(input('Ingrese la cantidad de personas para reserva: '))
+
+    while amountTables <= 0 or amountPeople <= 0:
+        print('¡Error! Verifique las mesas o personas')
+        amountTables = int(input('Ingrese la cantidad de mesas para reserva: '))
+        amountPeople = int(input('Ingrese la cantidad de personas para reserva: '))
+        
+        if amountTables >= 0 and amountPeople >= 0:
+            break
+    
+    
+
 def option4():
     print("\nUsted selecciono la opcion:\n4.Toma de ordenes y pedidos")
 
@@ -159,6 +176,5 @@ while login.lower() == "si":
     else:
         print("Ingrese una opcion valida\n")
         continue
-
 
 
