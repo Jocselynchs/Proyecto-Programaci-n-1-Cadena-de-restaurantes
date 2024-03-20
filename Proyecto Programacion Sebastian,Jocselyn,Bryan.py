@@ -15,7 +15,6 @@ def principal_menu():
 
 
 def option1():
-    global application_campus
     
     print("\nUsted selecciono la opcion:\n1.Registrar nueva sede")
     print('Sedes:')
@@ -98,6 +97,8 @@ def option2():
                 continue
         
 
+daysList = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"]
+campusList = ['san rafael', 'santo domingo', 'heredia', 'san jose', 'escazu']
 def option3(name, country, province, canton, district, address, age, ID):
     print("\nUsted selecciono la opción:\n3.Reservaciones del restaurante")
     while True:
@@ -121,9 +122,21 @@ def option3(name, country, province, canton, district, address, age, ID):
             break
 
     print('• Datos para reserva:')    
-    days = int(input('Dias deseados para la reserva: '))
+    dayAvailable = False
+    while not dayAvailable:
+        day = input('Ingrese el dia de la semana que desea hacer la reserva: ')
+        if day in daysList:
+            dayAvailable = True
+        else:
+            print('El dia seleccionado no esta disponible. \nSeleccione otro dia.')
     
-    campus = str(input('Seleccione la sede para la reserva: '))
+    campusAvailable = False
+    while not campusAvailable:
+        campus = input('Seleccione la sede para la reserva: ')
+        if campus in campusList:
+            campusAvailable = True
+        else:
+            print('La sede no esta disponible. \nSeleccione otra sede.')
     
     
     amountTables = int(input('Ingrese la cantidad de mesas para reserva: '))
@@ -136,7 +149,6 @@ def option3(name, country, province, canton, district, address, age, ID):
         
         if amountTables >= 0 and amountPeople >= 0:
             break
-    
     
 
 def option4():
@@ -200,7 +212,6 @@ def option4():
                     verify_order = False
 
     take_orders()
-option4()
 
 def option5():
     print("\nUsted selecciono la opcion:\n5.Resgistro de alimentos y bebidas")
