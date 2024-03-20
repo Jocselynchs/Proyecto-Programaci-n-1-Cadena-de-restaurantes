@@ -215,6 +215,41 @@ def option4():
 
 def option5():
     print("\nUsted selecciono la opcion:\n5.Resgistro de alimentos y bebidas")
+    catalogue = []
+    while True:
+        print("\n1. Agregar producto")
+        print("2. Mostrar catalogo")
+        print("3. Salir")
+        select_option = int(input("Seleccione una opcion: "))
+
+        if select_option == 1:
+            print("Ingrese los detalles del producto:")
+            name = input("Nombre: ")
+            description = input("Descripcion: ")
+            category = input("Categoria: ")
+            price = float(input("Precio: "))
+            product = [name, description, category, price]
+            catalogue=catalogue+[product]
+            print("¡Producto agregado al catalogo!")
+
+        elif select_option == 2:
+            if not catalogue:
+                print("El catalogo esta vacio.")
+            else:
+                print("Catalogo de productos:")
+                for product in catalogue:
+                    print("Nombre:", product[0])
+                    print("Descripcion:", product[1])
+                    print("Categoria:", product[2])
+                    print("Precio:", product[3])
+                    print()
+
+        elif select_option == 3:
+            print("Salir")
+            break
+
+        else:
+            print("Opcion invalida")
 
 def option6():
     print("\nUsted selecciono la opcion:\n6.Facturacion")
