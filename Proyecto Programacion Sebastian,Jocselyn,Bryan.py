@@ -195,9 +195,9 @@ def option4():
                 else:
                     print("No se encuentra disponible")
                     
-                amount_dish = int(input("Ingrese la cantidad de " + dish + " que desea solicitar: "))
-                amount_drinks = int(input("Ingrese la cantidad de " + drink + " que desea solicitar: "))
-                amount_dessert = int(input("Ingrese la cantidad de " + dessert + " que desea solicitar: "))
+                amount_dish = int(input("Ingrese la cantidad de " , dish , " que desea solicitar: "))
+                amount_drinks = int(input("Ingrese la cantidad de " , drink , " que desea solicitar: "))
+                amount_dessert = int(input("Ingrese la cantidad de " , dessert , " que desea solicitar: "))
                 dish_status = "Pedido Recibido"
                 dish_order = [dish, amount_dish, drink, amount_drinks, dessert, amount_dessert, dish_status]
                 order[table_selection] = dish_order
