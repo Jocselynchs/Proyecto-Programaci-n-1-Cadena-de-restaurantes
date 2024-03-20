@@ -1,7 +1,4 @@
 """Cadena de restaurantes Sabores Deliciosos"""
-""" Primer avance; primer módulo completo y funcional.
-• segundo módulo completo y funcional.
-• tercer módulo completo y funcional"""
 
 print("Bienvenido a la cadena de restaurantes Sabores Deliciosos")
 login = input("¿Desea ingresar al menu?\n Marque Si para ingresar al menu o No para salir del menu: ")
@@ -146,59 +143,64 @@ def option4():
     print("\nUsted selecciono la opcion:\n4.Toma de ordenes y pedidos")
     print("Este es el menu digital para la toma de ordenes y pedidos")
     order_menu="Este es el menu para ordenar pedidos"
+    
     def take_orders():
-        def take_orders():
-            available_dishes = ["Pollo Asado", "Pescado Frito", "Ensalada César", "Hamburguesa con Queso", "Pasta Alfredo"]
-            available_drinks = ["Bebida natural", "Gaseosa"]
-            available_desserts = ["cheesecake", "Helado", "Pastel de chocolate"]
-            tables = 15
-            available_tables = ["Disponible"] * tables
-            order = [[] for _ in range(tables)]
-            print("Por favor rellene los siguientes espacios para realizar el pedido")
-            verify_order = True
-            while verify_order:
-                table_selection = int(input("Ingrese el número de mesa (1-15): ")) - 1
-                if not (0<=table_selection and table_selection<tables):
-                    print("El número de mesa no está disponible") 
-                    return
-                if available_tables[table_selection] != "Disponible":
-                    print("La mesa", table_selection + 1, "ya está ocupada por", available_tables[table_selection])
-                else:
-                    available_tables[table_selection] = input("Ingrese el nombre del cliente a facturar: ")
-                    print("platos disponibles: \n 1.Pollo Asado\n 2.Pescado Frito\n 3.Ensalada César\n 4.Hamburguesa con Queso\n 5.Pasta Alfredo\n")
-                    dish = input("Ingrese el platillo a solicitar: ")
-                    print("bebidas disponibles: \n 1.Bebida natural\n 2.Gaseosa\n")
-                    drink = input("Ingrese la bebida: ")
-                    print("Postres disponibles: \n 1.cheesecake\n 2.Helado\n 3.Pastel de chocolate\n")
-                    dessert = input("Ingrese el postre a solicitar: ")
+        available_dishes = ["Pollo Asado", "Pescado Frito", "Ensalada César", "Hamburguesa con Queso", "Pasta Alfredo"]
+        available_drinks = ["Bebida natural", "Gaseosa"]
+        available_desserts = ["cheesecake", "Helado", "Pastel de chocolate"]
+        tables = 15
+        available_tables = ["Disponible"] * tables
+        order = [[] for _ in range(tables)]
+        print("Por favor rellene los siguientes espacios para realizar el pedido")
+        verify_order = True
+        
+        while verify_order:
+            table_selection = int(input("Ingrese el número de mesa (1-15): ")) - 1
+            if not (0<=table_selection and table_selection<tables):
+                print("El número de mesa no está disponible") 
+                return
+            if available_tables[table_selection] != "Disponible":
+                print("La mesa", table_selection + 1, "ya está ocupada por", available_tables[table_selection])
+            else:
+                available_tables[table_selection] = input("Ingrese el nombre del cliente a facturar: ")
+                print("platos disponibles: \n 1.Pollo Asado\n 2.Pescado Frito\n 3.Ensalada César\n 4.Hamburguesa con Queso\n 5.Pasta Alfredo\n")
+                dish = input("Ingrese el platillo a solicitar: ")
+                print("bebidas disponibles: \n 1.Bebida natural\n 2.Gaseosa\n")
+                drink = input("Ingrese la bebida: ")
+                print("Postres disponibles: \n 1.cheesecake\n 2.Helado\n 3.Pastel de chocolate\n")
+                dessert = input("Ingrese el postre a solicitar: ")
 
-                    if dish.lower() in [dish.lower() for dish in available_dishes]:
-                        print("El platillo está disponible")
-                    else:
-                        print("No se encuentra disponible")
-                    if drink.lower() in [drink.lower() for drink in available_drinks]:
-                        print("La bebida está disponible")
-                    else:
-                        print("No se encuentra disponible")
-                    if dessert.lower() in [dessert.lower() for dessert in available_desserts]:
-                        print("El postre está disponible")
-                    else:
-                        print("No se encuentra disponible")
+                if dish.lower() in [dish.lower() for dish in available_dishes]:
+                    print("El platillo está disponible")
+                else:
+                    print("No se encuentra disponible")
+                if drink.lower() in [drink.lower() for drink in available_drinks]:
+                    print("La bebida está disponible")
+                else:
+                    print("No se encuentra disponible")
+                if dessert.lower() in [dessert.lower() for dessert in available_desserts]:
+                    print("El postre está disponible")
+                else:
+                    print("No se encuentra disponible")
                     
-                    amount_dish = int(input("Ingrese la cantidad de " + dish + " que desea solicitar: "))
-                    amount_drinks = int(input("Ingrese la cantidad de " + drink + " que desea solicitar: "))
-                    amount_dessert = int(input("Ingrese la cantidad de " + dessert + " que desea solicitar: "))
-                    dish_status = "Pedido Recibido"
-                    dish_order = [dish, amount_dish, drink, amount_drinks, dessert, amount_dessert, dish_status]
-                    order[table_selection] = dish_order
-                    print("El pedido se realizó con éxito, pronto estará listo")
-                    kitchen_send = input("¿Enviar pedido a la cocina? (si/no): ")
-                    if kitchen_send.lower() == "si":
-                        order[table_selection][-1] = "En preparación"
-                        print("El pedido está siendo preparado")
-                        order_continue = input("¿Desea realizar otro pedido? (si/no): ")
-                    if order_continue.lower() == "no":
-                        verify_order = False
+                amount_dish = int(input("Ingrese la cantidad de " + dish + " que desea solicitar: "))
+                amount_drinks = int(input("Ingrese la cantidad de " + drink + " que desea solicitar: "))
+                amount_dessert = int(input("Ingrese la cantidad de " + dessert + " que desea solicitar: "))
+                dish_status = "Pedido Recibido"
+                dish_order = [dish, amount_dish, drink, amount_drinks, dessert, amount_dessert, dish_status]
+                order[table_selection] = dish_order
+                print("El pedido se realizó con éxito, pronto estará listo")
+                kitchen_send = input("¿Enviar pedido a la cocina? (si/no): ")
+                
+                if kitchen_send.lower() == "si":
+                    order[table_selection][-1] = "En preparación"
+                    print("El pedido está siendo preparado")
+                    order_continue = input("¿Desea realizar otro pedido? (si/no): ")
+                if order_continue.lower() == "no":
+                    verify_order = False
+
+    take_orders()
+option4()
 
 def option5():
     print("\nUsted selecciono la opcion:\n5.Resgistro de alimentos y bebidas")
