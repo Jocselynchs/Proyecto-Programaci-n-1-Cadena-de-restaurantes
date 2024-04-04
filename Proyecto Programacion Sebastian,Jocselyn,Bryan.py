@@ -98,6 +98,7 @@ def option2():
 def option3(availabilityList, group):
     print("\nUsted selecciono la opción:\n3.Reservaciones del restaurante")
     while True:
+        try: 
             print('• Identificacion del cliente')
             name_Verication = str(input('Ingrese el nombre: '))
             country_Verication = str(input('Ingrese el pais: '))
@@ -114,6 +115,10 @@ def option3(availabilityList, group):
             else: 
                 print('El cliente no existe aun.')
             break
+        
+        except ValueError:
+            print('Datos invalidos, verifique que sean correctos')
+            continue
 
     print('• Datos para reserva:')  
 
@@ -188,7 +193,7 @@ def option3(availabilityList, group):
         while verify_order0:
             try:    
                 tableSelection = int(input('Ingrese el numero de mesa para reserva: ')) - 1
-                peopleSelection = int(input('Ingrese el numero de personas por mesa: ')) - 1
+                peopleSelection = int(input('Ingrese el numero de personas por mesa: ')) 
                 if tableSelection < 0 or tableSelection >= len(availableTables):
                     print("Selección inválida. Por favor, elija un número de la lista.")
                     continue
@@ -339,4 +344,3 @@ while login.lower() == "si":
     else:
         print("Ingrese una opcion valida\n")
         continue
-
