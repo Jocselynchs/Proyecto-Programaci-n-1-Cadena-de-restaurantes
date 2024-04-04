@@ -48,17 +48,10 @@ def option1():
     else:
         print("El día No está disponible")
 
-
-
+availabilityList = [0,0,0,0,0,0]
 def option2():
-    global name
-    global country
-    global province
-    global canton
-    global district
-    global address
-    global age
-    global ID
+    global availabilityList
+    global group
 
     print("\nUsted selecciono la opcion:\n2.Registro de clientes")
     while True:
@@ -68,6 +61,9 @@ def option2():
             canton = str(input('Ingrese su canton: '))
             district = str(input('Ingrese su distrito: '))
             address = str(input('Ingrese su direccion: '))
+            if name and country and province and canton and district and address:
+                group = [name, country, province, canton, district, address]
+                availabilityList = availabilityList + [group]
 
 
             try:
@@ -95,14 +91,12 @@ def option2():
             except ValueError:
                 print('¡Verifique que no haya ingresado incorrectamente los datos!\n')
                 continue
-        
 
-daysList = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"]
-campusList = ['san rafael', 'santo domingo', 'heredia', 'san jose', 'escazu']
-def option3(name, country, province, canton, district, address, age, ID):
+
+def option3(availabilityList, group):
     print("\nUsted selecciono la opción:\n3.Reservaciones del restaurante")
     while True:
-            print('• Identificacion del cliente:')
+            print('• Identificacion del cliente')
             name_Verication = str(input('Ingrese el nombre: '))
             country_Verication = str(input('Ingrese el pais: '))
             province_Verication = str(input('Ingrese la provincia: '))
@@ -113,44 +107,108 @@ def option3(name, country, province, canton, district, address, age, ID):
             ID_Verication = int(input('Ingrese el numero de identificacion: '))
             
             #Verificacion de cliente existente
-            if name_Verication == name and country_Verication == country and province_Verication == province\
-                and canton_Verication == canton and district_Verication == district and address_Verication == address\
-                and age_Verication == age and ID_Verication == ID:
+            if group in availabilityList:   
                 print('El cliente si existe.')
             else: 
                 print('El cliente no existe aun.')
             break
 
-    print('• Datos para reserva:')    
-    dayAvailable = False
-    while not dayAvailable:
-        day = input('Ingrese el dia de la semana que desea hacer la reserva: ')
-        if day in daysList:
-            dayAvailable = True
-        else:
-            print('El dia seleccionado no esta disponible. \nSeleccione otro dia.')
-    
-    campusAvailable = False
-    while not campusAvailable:
-        campus = input('Seleccione la sede para la reserva: ')
-        if campus in campusList:
-            campusAvailable = True
-        else:
-            print('La sede no esta disponible. \nSeleccione otra sede.')
-    
-    
-    amountTables = int(input('Ingrese la cantidad de mesas para reserva: '))
-    amountPeople = int(input('Ingrese la cantidad de personas para reserva: '))
+    print('• Datos para reserva:')  
 
-    while amountTables <= 0 or amountPeople <= 0:
-        print('¡Error! Verifique las mesas o personas')
-        amountTables = int(input('Ingrese la cantidad de mesas para reserva: '))
-        amountPeople = int(input('Ingrese la cantidad de personas para reserva: '))
+    def availability():
+        daysList = ["1.lunes", "2.martes", "3.miércoles", "4.jueves", "5.viernes", "6.sábado", "7.domingo"]
+        campusList = ['1.san rafael', '2.santo domingo', '3.heredia', '4.san jose', '5.escazu']  
+        tablesList = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+        days = 7
+        campus = 5
+        tables = 15
+        availableDays = ['Disponible'] * len(daysList)
+        availableCampus = ['Disponible'] * len(campusList)
+        availableTables = ['Disponible'] * len(tablesList)
+
+        print("Por favor rellene los siguientes espacios para realizar el pedido")
+        verify_order0 = True
         
-        if amountTables >= 0 and amountPeople >= 0:
-            break
-    
+        #Seleccion de dias para reservar:
+        while verify_order0:
+            for i in daysList:
+                print(i)
+            try:
+                daySelection = int(input('Ingrese el número de la semana para reserva: ')) - 1
+                if daySelection < 0 or daySelection >= len(availableDays):
+                    print("Selección inválida. Por favor, elija un número de la lista.")
+                    continue
 
+                if availableDays[daySelection] != 'Disponible':
+                    print("El día ya está ocupado por", availableDays[daySelection])
+                else:
+                    availableDays[daySelection] = input("Ingrese el nombre del cliente a reservar: ")
+                    print("Reserva realizada a nombre de", availableDays[daySelection])
+
+            except ValueError:
+                print("Por favor, ingrese un número válido.")
+                continue
+
+            again = input('¿Desea reservar de nuevo o continuar? (si/continuar)\n') 
+            if again.lower() == 'si':
+                continue
+            else:
+                break
+        
+        #Seleccion de sedes para reservar:
+        while verify_order0:
+            for x in campusList:
+                print(x)
+            try:    
+                campusSelection = int(input('Ingrese el numero del campus para reserva: ')) - 1
+                if campusSelection < 0 or campusSelection >= len(availableTables):
+                    print("Selección inválida. Por favor, elija un número de la lista.")
+                    continue
+
+                if availableCampus[campusSelection] != 'Disponible':
+                    print("La sede ya está ocupado por", availableCampus[campusSelection])
+                else:
+                    availableCampus[campusSelection] = input("Ingrese el nombre del cliente a reservar: ")
+                    print("Reserva realizada a nombre de", availableCampus[campusSelection])
+
+            except ValueError:
+                print("Por favor, ingrese un número válido.")
+                continue
+
+            again = input('¿Desea reservar de nuevo o continuar? (si/continuar)\n')
+            if again.lower() == 'si':
+                continue
+            else: 
+                break 
+
+        #Seleccion de mesas para reservar:
+        while verify_order0:
+            try:    
+                tableSelection = int(input('Ingrese el numero de mesa para reserva: ')) - 1
+                peopleSelection = int(input('Ingrese el numero de personas por mesa: ')) - 1
+                if tableSelection < 0 or tableSelection >= len(availableTables):
+                    print("Selección inválida. Por favor, elija un número de la lista.")
+                    continue
+
+                if availableTables[tableSelection] != 'Disponible':
+                    print("La mesa ya está ocupada por", availableTables[tableSelection])
+                else:
+                    availableTables[tableSelection] = input("Ingrese el nombre del cliente a reservar: ")
+                    print("Reserva realizada a nombre de", availableTables[tableSelection], '\n Para un total de:',peopleSelection)
+
+            except ValueError:
+                print("Por favor, ingrese un número válido.")
+                continue
+
+            again = input('¿Desea reservar de nuevo(si) o finalizar(no)? (si/no)\n')
+            if again.lower() == 'si':
+                continue
+            else:
+                break 
+
+    availability()
+    
 def option4():
     print("\nUsted selecciono la opcion:\n4.Toma de ordenes y pedidos")
     print("Este es el menu digital para la toma de ordenes y pedidos")
@@ -195,9 +253,9 @@ def option4():
                 else:
                     print("No se encuentra disponible")
                     
-                amount_dish = int(input("Ingrese la cantidad de " , dish , " que desea solicitar: "))
-                amount_drinks = int(input("Ingrese la cantidad de " , drink , " que desea solicitar: "))
-                amount_dessert = int(input("Ingrese la cantidad de " , dessert , " que desea solicitar: "))
+                amount_dish = int(input("Ingrese la cantidad de " + dish + " que desea solicitar: "))
+                amount_drinks = int(input("Ingrese la cantidad de " + drink + " que desea solicitar: "))
+                amount_dessert = int(input("Ingrese la cantidad de " + dessert + " que desea solicitar: "))
                 dish_status = "Pedido Recibido"
                 dish_order = [dish, amount_dish, drink, amount_drinks, dessert, amount_dessert, dish_status]
                 order[table_selection] = dish_order
@@ -264,7 +322,7 @@ while login.lower() == "si":
         option2()
     elif option == 3:
         try: 
-            option3(name, country, province, canton, district, address, age, ID)
+            option3(availabilityList, group)
         except NameError:
             print('¡No se ha registrado ningun cliente aun!')    
     elif option == 4:
@@ -279,5 +337,4 @@ while login.lower() == "si":
     else:
         print("Ingrese una opcion valida\n")
         continue
-
 
