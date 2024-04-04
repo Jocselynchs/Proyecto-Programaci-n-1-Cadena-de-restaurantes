@@ -1,3 +1,5 @@
+"""Alumnos: Jocselyn chaves sevilla y sebastian fernandez hernandez """
+
 """Cadena de restaurantes Sabores Deliciosos"""
 
 print("Bienvenido a la cadena de restaurantes Sabores Deliciosos")
