@@ -1,5 +1,4 @@
 """Alumnos: Jocselyn chaves sevilla y sebastian fernandez hernandez """
-
 """Cadena de restaurantes Sabores Deliciosos"""
 
 print("Bienvenido a la cadena de restaurantes Sabores Deliciosos")
@@ -142,7 +141,7 @@ def option3(availabilityList, group):
             for i in daysList:
                 print(i)
             try:
-                daySelection = int(input('Ingrese el número de la semana para reserva: ')) - 1
+                daySelection = int(input('Ingrese el número de la semana para reservar: ')) - 1
                 if daySelection < 0 or daySelection >= len(availableDays):
                     print("Selección inválida. Por favor, elija un número de la lista.")
                     continue
@@ -157,8 +156,8 @@ def option3(availabilityList, group):
                 print("Por favor, ingrese un número válido.")
                 continue
 
-            again = input('¿Desea reservar de nuevo o continuar? (si/continuar)\n') 
-            if again.lower() == 'si':
+            again = input('Marque (s) para realizar otra reserva y (n) para continuar\n') 
+            if again.lower() == 's':
                 continue
             else:
                 break
@@ -168,10 +167,10 @@ def option3(availabilityList, group):
             for x in campusList:
                 print(x)
             try:    
-                campusSelection = int(input('Ingrese el numero del campus para reserva: ')) - 1
+                campusSelection = int(input('Ingrese el numero de la sede para reservar: ')) - 1
                 if campusSelection < 0 or campusSelection >= len(availableTables):
                     print("Selección inválida. Por favor, elija un número de la lista.")
-                    continue
+                    continue 
 
                 if availableCampus[campusSelection] != 'Disponible':
                     print("La sede ya está ocupado por", availableCampus[campusSelection])
@@ -183,8 +182,8 @@ def option3(availabilityList, group):
                 print("Por favor, ingrese un número válido.")
                 continue
 
-            again = input('¿Desea reservar de nuevo o continuar? (si/continuar)\n')
-            if again.lower() == 'si':
+            again = input('Marque (s) para realizar otra reserva y (n) para continuar\n')
+            if again.lower() == 's':
                 continue
             else: 
                 break 
@@ -192,7 +191,7 @@ def option3(availabilityList, group):
         #Seleccion de mesas para reservar:
         while verify_order0:
             try:    
-                tableSelection = int(input('Ingrese el numero de mesa para reserva: ')) - 1
+                tableSelection = int(input('Ingrese el numero de mesa para reservar: ')) - 1
                 peopleSelection = int(input('Ingrese el numero de personas por mesa: ')) 
                 if tableSelection < 0 or tableSelection >= len(availableTables):
                     print("Selección inválida. Por favor, elija un número de la lista.")
@@ -208,8 +207,8 @@ def option3(availabilityList, group):
                 print("Por favor, ingrese un número válido.")
                 continue
 
-            again = input('¿Desea reservar de nuevo(si) o finalizar(no)? (si/no)\n')
-            if again.lower() == 'si':
+            again = input('Marque (s) para realizar otra reserva y (n) para finalizar\n')
+            if again.lower() == 's':
                 continue
             else:
                 break 
