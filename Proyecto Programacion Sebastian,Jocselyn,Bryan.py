@@ -331,7 +331,6 @@ def option6():
     print("\nUsted selecciono la opcion:\n6.Facturacion")
     repeat=True
     while True:
-        generate=input("Desea generar la factura? precione 1 para si o 0 para salir")
         file=open("recibo.txt","r")
         information=file.read()
         information_inTxt = information.split("\n")
@@ -367,9 +366,9 @@ def option6():
         #terminar de hacer el if de generar factura se me olvido quedo aca abajito
         
         file.write("**Restaurante sabores Deliciosos**"+"\n"+"fecha: "+str(date)+"\n"+"nombre cliente: "+str(name)+"\n"+
-                   "fecha: "+str(date)+"\n"+"Plato ordenado: "+str(dish)+"cantidad: "+str(dish+amount_dish)+" "+str(rawPrice_dish)+"\n"+
+                   "Plato ordenado: "+str(dish)+"cantidad: "+str(amount_dish)+" "+str(rawPrice_dish)+"\n"+
                     "bebida ordenada: "+str(drink)+"cantidad: "+str(amount_drinks)+" "+str(rawPrice_drinks)+"\n"+"Postre ordenado: "+str(dessert)+"cantidad: "+
-                    str(amount_dessert)+" "+str(rawPrice_dessert)+"\n"+"Precio bruto"+raw_price+"\n"+"IVA: 13%"+"\n"+"Impuesto de Venta: 10%"+"\n"+
+                    str(amount_dessert)+" "+str(rawPrice_dessert)+"\n"+"Precio bruto: "+str(raw_price)+"\n"+"IVA: 13%"+"\n"+"Impuesto de Venta: 10%"+"\n"+
                     str(total)+"\n"+"¡Gracias por su visita vuelva pronto!"+"\n")
         file.close()
         if generate==1:
