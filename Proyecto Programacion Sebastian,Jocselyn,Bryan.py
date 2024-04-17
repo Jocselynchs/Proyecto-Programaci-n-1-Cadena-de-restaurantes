@@ -1,3 +1,4 @@
+import os
 """Alumnos: Jocselyn chaves sevilla y sebastian fernandez hernandez """
 """Cadena de restaurantes Sabores Deliciosos"""
 
@@ -53,7 +54,7 @@ availabilityList = [0,0,0,0,0,0]
 def option2():
     global availabilityList
     global group
-    file=open("recibo.txt","a")
+    file=open("pedidos.txt","w")
 
     print("\nUsted selecciono la opcion:\n2.Registro de clientes")
     while True:
@@ -93,8 +94,8 @@ def option2():
             except ValueError:
                 print('¡Verifique que no haya ingresado incorrectamente los datos!\n')
                 continue
-            file.write("Cliente: "+str(name))
-            file.close()
+    file.write("Cliente: "+ str(name) + '\n' + 'Metodo de pago: ' + str(choice)+'\n')
+    file.close()
 
 
 def option3(availabilityList, group):
@@ -147,7 +148,6 @@ def option3(availabilityList, group):
                 daySelection = int(input('Ingrese el número de la semana para reservar: ')) - 1
                 if daySelection < 0 or daySelection >= len(availableDays):
                     print("Selección inválida. Por favor, elija un número de la lista.")
-                    file=open("recibo.txt","a")
                     continue
 
                 if availableDays[daySelection] != 'Disponible':
@@ -165,8 +165,6 @@ def option3(availabilityList, group):
                 continue
             else:
                 break
-            file.write("fecha seleccionada: "+str(daySelection))
-            file.close()
         
         #Seleccion de sedes para reservar:
         while verify_order0:
@@ -235,8 +233,8 @@ def option4():
         order = [[] for _ in range(tables)]
         print("Por favor rellene los siguientes espacios para realizar el pedido")
         verify_order = True
-        file=open("recibo.txt","a")
-
+        
+        file=open("pedidos.txt","a")
         while verify_order:
             table_selection = int(input("Ingrese el número de mesa (1-15): ")) - 1
             if not (0<=table_selection and table_selection<tables):
@@ -281,9 +279,9 @@ def option4():
                     order_continue = input("¿Desea realizar otro pedido? (si/no): ")
                 if order_continue.lower() == "no":
                     verify_order = False
-            file.write("Numero de mesa: "+str(table_selection)+"\n"+"Plato ordenado: "+str(dish)+"cantidad: "+str(dish+amount_dish)+"\n"+
-                               "bebida ordenada: "+str(drink)+"cantidad: "+str(amount_drinks)+"\n"+"Postre ordenado: "+str(dessert)+"cantidad: "+str(amount_dessert)+"\n")
-            file.close()
+        file.write("Numero de mesa: "+str(table_selection)+"\n"+"Plato ordenado: "+str(dish)+'\n'+"cantidad: "+str(amount_dish)+"\n"+
+                               "bebida ordenada: "+str(drink)+'\n'+"cantidad: "+str(amount_drinks)+"\n"+"Postre ordenado: "+str(dessert)+'\n'+"cantidad: "+str(amount_dessert)+"\n")
+        file.close()
                     
         
 
@@ -318,7 +316,6 @@ def option5():
                     print("Descripcion:", product[1])
                     print("Categoria:", product[2])
                     print("Precio:", product[3])
-                    print()
 
         elif select_option == 3:
             print("Salir")
@@ -329,25 +326,26 @@ def option5():
 
 def option6():
     print("\nUsted selecciono la opcion:\n6.Facturacion")
-    repeat=True
-    while True:
-        file=open("recibo.txt","r")
-        information=file.read()
-        information_inTxt = information.split("\n")
-        print(information_inTxt)
-        file.close()
-        print(information)
-        file.close()
-        generate=input("Desea generar la factura? precione 1 para si o 0 para salir")
+    file=open("pedidos.txt","r")
+    information=file.read()
+    information_inTxt = information.split("\n")
+    print(information_inTxt)
+    print(information)
+    file.close()
+    print('***Pedidos ingresados***')
+    
+    while True:    
+        generate=input("Desea generar la factura? precione 1 para si o 0 para salir: ")
         file=open("recibo.txt","a")
         name=str(input("Ingrese el nombre del cliente: "))
+        way_To_Pay2 = str(input('Ingrese el metodo de pago: '))
         date=str(input("Ingrese la fecha: "))
         dish=str(input("Ingrese el plato ordenado: "))
         dessert=str(input("Ingrese el plato ordenado: "))
         drink=str(input("Ingrese el plato ordenado: "))
         amount_dish = int(input("Ingrese la cantidad de " + dish ))
         amount_drinks = int(input("Ingrese la cantidad de " + drink ))
-        amount_dessert = int(input("Ingrese la cantidad de " + dessert))
+        amount_dessert = int(input("Ingrese la cantidad de " + dessert ))
         dish_price=4500
         dessert_price=2000
         drink_price=1200
@@ -357,22 +355,19 @@ def option6():
         raw_price=rawPrice_drinks+rawPrice_dish+rawPrice_dessert
         iva=raw_price*0.13
         tax_service=raw_price*0.10
-        total=iva+tax_service
-        #agregar en el metodo de pago al txt para que se imprima en conjunto asi el usuario sabe que tipo de metodo de pago
-        #escogio ademas volver a agregarlo en esta seccion para que el usuario lo ingrese asi sale en la factura
-        #verificar que todo este bien los txt al macendados y que esten funcionando
-        #agregar detalles del bucle y ver si se quiere agregarl algo mas para que el recibo salga decorado o algo....
-        #terminar de rellenar el txt de aca abajo siguiendo la misma esctructura.
-        #terminar de hacer el if de generar factura se me olvido quedo aca abajito
+        total=raw_price+iva+tax_service
+   
         
         file.write("**Restaurante sabores Deliciosos**"+"\n"+"fecha: "+str(date)+"\n"+"nombre cliente: "+str(name)+"\n"+
-                   "Plato ordenado: "+str(dish)+"cantidad: "+str(amount_dish)+" "+str(rawPrice_dish)+"\n"+
-                    "bebida ordenada: "+str(drink)+"cantidad: "+str(amount_drinks)+" "+str(rawPrice_drinks)+"\n"+"Postre ordenado: "+str(dessert)+"cantidad: "+
+                   "Plato ordenado: "+str(dish)+'\n'+"cantidad: "+str(amount_dish)+" "+str(rawPrice_dish)+"\n"+
+                    "bebida ordenada: "+str(drink)+'\n'+"cantidad: "+str(amount_drinks)+" "+str(rawPrice_drinks)+"\n"+"Postre ordenado: "+str(dessert)+'\n'+"cantidad: "+
                     str(amount_dessert)+" "+str(rawPrice_dessert)+"\n"+"Precio bruto: "+str(raw_price)+"\n"+"IVA: 13%"+"\n"+"Impuesto de Venta: 10%"+"\n"+
-                    str(total)+"\n"+"¡Gracias por su visita vuelva pronto!"+"\n")
+                    str(total)+"\n"+'Metodo de pago: '+str(way_To_Pay2)+'\n'"¡Gracias por su visita vuelva pronto!"+"\n\n")
         file.close()
         if generate==1:
-        print("")
+            print(date)
+        else:
+            break
 
 
 while login.lower() == "si":
@@ -393,13 +388,12 @@ while login.lower() == "si":
     elif option == 5:
         option5()
     elif option == 6:
-        option6()
+        try:
+            option6()
+        except FileNotFoundError:
+            print('¡Se requiere ingresar los datos anteriores para poder almacenar pedidos!')
     elif option == 7:
         print("\nUsted selecciono la opcion:\n7.Salir")
-        break
-    else:
-        print("Ingrese una opcion valida\n")
-        continue
         break
     else:
         print("Ingrese una opcion valida\n")
