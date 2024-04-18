@@ -331,20 +331,16 @@ def option6():
     information=file.read()
     information_inTxt = information.split("\n")
     print(information_inTxt)
-    print(information)
     file.close()
-    
-    while True:    
-        generate=input("Desea generar la factura? precione 1 para si o 0 para salir: ")
-        if generate==0:
-            break
+    repeat=True
+    while repeat:    
         file=open("recibo.txt","a")
         name=str(input("Ingrese el nombre del cliente: "))
         way_To_Pay2 = str(input('Ingrese el metodo de pago: '))
         date=str(input("Ingrese la fecha: "))
         dish=str(input("Ingrese el plato ordenado: "))
-        dessert=str(input("Ingrese el plato ordenado: "))
-        drink=str(input("Ingrese el plato ordenado: "))
+        dessert=str(input("Ingrese el postre ordenado: "))
+        drink=str(input("Ingrese la bebida ordenado: "))
         amount_dish = int(input("Ingrese la cantidad de " + dish ))
         amount_drinks = int(input("Ingrese la cantidad de " + drink ))
         amount_dessert = int(input("Ingrese la cantidad de " + dessert ))
@@ -366,7 +362,9 @@ def option6():
                         str(amount_dessert)+" "+str(rawPrice_dessert)+"\n"+"Precio bruto: "+str(raw_price)+"\n"+"IVA: 13%"+"\n"+"Impuesto de Venta: 10%"+"\n"+
                         str(total)+"\n"+'Metodo de pago: '+str(way_To_Pay2)+'\n'"¡Gracias por su visita vuelva pronto!"+"\n\n")
         file.close()
-        
+        generate=input("Desea generar la factura? (si/no) ")
+        if generate=="si":
+            repeat=False
     
 
 
@@ -396,6 +394,8 @@ while login.lower() == "si":
         print("\nUsted selecciono la opcion:\n7.Salir")
         break
     else:
+        print("Ingrese una opcion valida\n")
+        continue
         print("Ingrese una opcion valida\n")
         continue
         
