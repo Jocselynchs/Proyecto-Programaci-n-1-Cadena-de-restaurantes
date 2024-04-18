@@ -325,17 +325,19 @@ def option5():
             print("Opcion invalida")
 
 def option6():
-    print("\nUsted selecciono la opcion:\n6.Facturacion")
+    print("\nUsted selecciono la opcion:\n6.Facturacion")    
+    print('***Pedidos ingresados***')
     file=open("pedidos.txt","r")
     information=file.read()
     information_inTxt = information.split("\n")
     print(information_inTxt)
     print(information)
     file.close()
-    print('***Pedidos ingresados***')
     
     while True:    
         generate=input("Desea generar la factura? precione 1 para si o 0 para salir: ")
+        if generate==0:
+            break
         file=open("recibo.txt","a")
         name=str(input("Ingrese el nombre del cliente: "))
         way_To_Pay2 = str(input('Ingrese el metodo de pago: '))
@@ -356,18 +358,16 @@ def option6():
         iva=raw_price*0.13
         tax_service=raw_price*0.10
         total=raw_price+iva+tax_service
-   
-        
+            
+            
         file.write("**Restaurante sabores Deliciosos**"+"\n"+"fecha: "+str(date)+"\n"+"nombre cliente: "+str(name)+"\n"+
-                   "Plato ordenado: "+str(dish)+'\n'+"cantidad: "+str(amount_dish)+" "+str(rawPrice_dish)+"\n"+
-                    "bebida ordenada: "+str(drink)+'\n'+"cantidad: "+str(amount_drinks)+" "+str(rawPrice_drinks)+"\n"+"Postre ordenado: "+str(dessert)+'\n'+"cantidad: "+
-                    str(amount_dessert)+" "+str(rawPrice_dessert)+"\n"+"Precio bruto: "+str(raw_price)+"\n"+"IVA: 13%"+"\n"+"Impuesto de Venta: 10%"+"\n"+
-                    str(total)+"\n"+'Metodo de pago: '+str(way_To_Pay2)+'\n'"¡Gracias por su visita vuelva pronto!"+"\n\n")
+                       "Plato ordenado: "+str(dish)+'\n'+"cantidad: "+str(amount_dish)+" "+str(rawPrice_dish)+"\n"+
+                        "bebida ordenada: "+str(drink)+'\n'+"cantidad: "+str(amount_drinks)+" "+str(rawPrice_drinks)+"\n"+"Postre ordenado: "+str(dessert)+'\n'+"cantidad: "+
+                        str(amount_dessert)+" "+str(rawPrice_dessert)+"\n"+"Precio bruto: "+str(raw_price)+"\n"+"IVA: 13%"+"\n"+"Impuesto de Venta: 10%"+"\n"+
+                        str(total)+"\n"+'Metodo de pago: '+str(way_To_Pay2)+'\n'"¡Gracias por su visita vuelva pronto!"+"\n\n")
         file.close()
-        if generate==1:
-            print(date)
-        else:
-            break
+        
+    
 
 
 while login.lower() == "si":
@@ -398,3 +398,5 @@ while login.lower() == "si":
     else:
         print("Ingrese una opcion valida\n")
         continue
+        
+  
